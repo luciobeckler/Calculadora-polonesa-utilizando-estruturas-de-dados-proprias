@@ -1,21 +1,49 @@
 package Fila;
 
 public class Fila {
-  CelulaFila primeiro;
-  CelulaFila ultimo;
+  CelulaFila frente;
+  CelulaFila tras;
 
-  Fila() {
-    primeiro = new CelulaFila(-1);
-    ultimo = primeiro;
-    primeiro.proximo = null;
+  public Fila() {
+    frente = new CelulaFila(-1);
+    tras = frente;
+    frente.prox = null;
   }
 
   boolean vazia() {
-    return (primeiro == null);
+    return (frente == null);
   }
 
-  void enfilera(int elemento) {
-    ultimo.proximo = new CelulaFila(elemento);
+  void enfilera(CelulaFila elemento) {
+    this.tras.prox = elemento;
+    this.tras = tras.prox;
+    this.tras.prox = null;
   }
 
+  CelulaFila desenfilerar() throws Exception {
+    CelulaFila item = null;
+    if (vazia()) {
+      throw new Exception("Erro: A fila está vazia");
+    }
+
+    item = frente.prox;
+    frente.prox = item.prox;
+    if (frente.prox == null) {
+      tras = frente;
+    }
+
+    return item;
+  }
+
+  void exibir() {
+    if (vazia()) {
+      System.out.println("Fila vazia");
+    } else {
+      CelulaFila aux = frente.prox;
+      while (aux != null) {
+        System.out.println("\n\rElemento = " + aux.valor);
+        aux = aux.prox;
+      }
+    }
+  }
 }
