@@ -1,11 +1,15 @@
 package Fila;
 
+import Celula.Variavel;
+import Celula.Celula;
+import Celula.Operando;
+
 public class Fila {
-  CelulaFila frente;
-  CelulaFila tras;
+  Celula frente;
+  Celula tras;
 
   public Fila() {
-    frente = new CelulaFila(-1);
+    frente = new Variavel(-1.0);
     tras = frente;
     frente.prox = null;
   }
@@ -14,14 +18,14 @@ public class Fila {
     return (frente == null);
   }
 
-  void enfilera(CelulaFila elemento) {
+  void enfilera(Variavel elemento) {
     this.tras.prox = elemento;
-    this.tras = tras.prox;
+    tras = tras.prox;
     this.tras.prox = null;
   }
 
-  CelulaFila desenfilerar() throws Exception {
-    CelulaFila item = null;
+  Celula desenfilerar() throws Exception {
+    Celula item = null;
     if (vazia()) {
       throw new Exception("Erro: A fila está vazia");
     }
@@ -39,9 +43,9 @@ public class Fila {
     if (vazia()) {
       System.out.println("Fila vazia");
     } else {
-      CelulaFila aux = frente.prox;
+      Celula aux = frente.prox;
       while (aux != null) {
-        System.out.println("\n\rElemento = " + aux.valor);
+        System.out.println("\n\rElemento = " + aux.getValor());
         aux = aux.prox;
       }
     }

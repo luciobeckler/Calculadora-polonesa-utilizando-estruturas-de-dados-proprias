@@ -1,43 +1,51 @@
 package Pilha;
 
+import Celula.Celula;
+import Celula.Variavel;
+
 public class Pilha {
 
-  CelulaPilha topo;
+  public Celula topo;
   int tamanho;
 
-  boolean vazia() {
+  public Pilha() {
+    topo = null;
+    tamanho = 0;
+  }
+
+  public boolean vazia() {
     return (topo == null);
   }
 
-  void empilhar(CelulaPilha elemento) {
+  public void empilhar(Celula elemento) {
     elemento.prox = topo;
     topo = elemento;
     tamanho++;
   }
 
-  CelulaPilha desempilhar() {
+  public Celula desempilhar() {
     if (vazia()) {
       System.out.println("Pilha vazia");
       return null;
     } else {
-      CelulaPilha aux = topo;
+      Celula aux = topo;
       topo = topo.prox;
       tamanho--;
       return aux;
     }
   }
 
-  void esvaziar() {
+  public void esvaziar() {
     topo = null;
   }
 
-  void exibir() {
-    if (vazia())
+  public void exibir() {
+    if (vazia()) {
       System.out.println("Pilha vazia");
-    else {
-      CelulaPilha aux = topo;
+    } else {
+      Celula aux = topo;
       while (aux != null) {
-        System.out.println(aux.valor);
+        System.err.println("Elemento = " + aux.getValor());
         aux = aux.prox;
       }
     }
