@@ -18,9 +18,11 @@ public class Pilha {
   }
 
   public void empilhar(Celula elemento) {
-    elemento.prox = topo;
-    topo = elemento;
-    tamanho++;
+    if (elemento != null) {
+      elemento.prox = topo;
+      topo = elemento;
+      tamanho++;
+    }
   }
 
   public Celula desempilhar() {
@@ -33,6 +35,13 @@ public class Pilha {
       tamanho--;
       return aux;
     }
+  }
+
+  public Celula peek() {
+    Celula retorno = desempilhar();
+    empilhar(retorno);
+
+    return retorno;
   }
 
   public void esvaziar() {
