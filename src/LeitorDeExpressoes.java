@@ -1,8 +1,7 @@
 import java.util.Scanner;
 
-import Celula.Celula;
 import Celula.Operando;
-import Celula.Variavel; // Importe a classe Variavel
+import Celula.Variavel;
 import Pilha.Pilha;
 
 public class LeitorDeExpressoes {
@@ -14,6 +13,7 @@ public class LeitorDeExpressoes {
     System.out.println("Você digitou: " + linha);
 
     Pilha pilha = quebraLinhaEGeraPilha(linha);
+    scanner.close();
     return pilha;
   }
 
@@ -22,7 +22,6 @@ public class LeitorDeExpressoes {
     Pilha pilha = new Pilha();
 
     for (String elemento : elementos) {
-      // Verifica se o elemento é um operador
       if (elemento.equals("*") ||
           elemento.equals("/") ||
           elemento.equals("+") ||

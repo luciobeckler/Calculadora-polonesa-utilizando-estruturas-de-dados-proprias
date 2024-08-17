@@ -1,6 +1,5 @@
 import Pilha.Pilha;
 import Celula.Variavel;
-import Fila.Fila;
 
 import Celula.Celula;
 import Celula.Operando;
@@ -55,11 +54,11 @@ public class ConversorExpressao {
     return 0;
   }
 
+  @SuppressWarnings("unused")
   private Pilha mockPilha() {
     Pilha pilha = new Pilha();
 
     // Exemplo de expressão: 5 9 3 + 4 2 * * 7 + *
-
     pilha.empilhar(new Variavel(5.0));
     pilha.empilhar(new Variavel(9.0));
     pilha.empilhar(new Variavel(3.0));

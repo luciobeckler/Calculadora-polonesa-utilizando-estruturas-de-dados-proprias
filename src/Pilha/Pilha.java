@@ -1,7 +1,6 @@
 package Pilha;
 
 import Celula.Celula;
-import Celula.Variavel;
 
 public class Pilha {
 

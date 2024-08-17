@@ -1,7 +1,5 @@
 package Celula;
 
-import java.security.PublicKey;
-
 public class Variavel extends Celula {
   Double valor;
 
