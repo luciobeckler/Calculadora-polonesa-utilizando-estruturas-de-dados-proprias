@@ -7,41 +7,37 @@ import Celula.Operando;
 
 public class ConversorExpressao {
   private String expressao = "";
-  private Pilha pilha = mockarPilha();
+  private Pilha pilha;
 
-  public static void main(String[] args) throws Exception {
-    ConversorExpressao conversor = new ConversorExpressao();
-    conversor.ConverteExpressaoAPartirDaPilha();
+  public ConversorExpressao(Pilha pilhaExpressao) {
+    pilha = pilhaExpressao;
   }
 
   public void ConverteExpressaoAPartirDaPilha() throws Exception {
     // Iniciar o processo de conversão e cálculo
     double resultado = geraExpressao();
-    System.out.println("Expressão Infixa: " + expressao);
-    System.out.println("Resultado: " + resultado);
+    System.out.println("Expressão Infixa: " + expressao + " = " + resultado);
   }
 
   public double geraExpressao() {
     Celula topoPilha = pilha.desempilhar();
 
     if (topoPilha instanceof Variavel) {
-      // Se for uma variável (número), retorne o valor e acrescente à expressão
       double valor = ((Variavel) topoPilha).getValor();
-      expressao += valor;
+      expressao = expressao.concat(String.valueOf(valor));
       return valor;
     } else if (topoPilha instanceof Operando) {
-      // Se for um operador, precisamos calcular as duas sub-expressões
-      String operador = String.valueOf(topoPilha.getValor());
+      expressao = expressao.concat("(");
 
-      // Como estamos desempilhando de uma pilha, o segundo operando vem antes do
-      // primeiro
-      double operando2 = geraExpressao();
       double operando1 = geraExpressao();
 
-      // Constrói a expressão na notação infixa
-      expressao = "(" + operando1 + " " + operador + " " + operando2 + ")";
+      String operador = String.valueOf(topoPilha.getValor());
+      expressao = expressao.concat(operador);
 
-      // Realiza a operação
+      double operando2 = geraExpressao();
+
+      expressao = expressao.concat(")");
+
       switch (operador) {
         case "+":
           return operando1 + operando2;
@@ -59,10 +55,11 @@ public class ConversorExpressao {
     return 0;
   }
 
-  private Pilha mockarPilha() {
+  private Pilha mockPilha() {
     Pilha pilha = new Pilha();
 
     // Exemplo de expressão: 5 9 3 + 4 2 * * 7 + *
+
     pilha.empilhar(new Variavel(5.0));
     pilha.empilhar(new Variavel(9.0));
     pilha.empilhar(new Variavel(3.0));
